@@ -13,7 +13,7 @@ function App() {
             .then(response => {
                 setShort(shortUrl.concat(response.data.result.short_link));
             });
-        console.log(shortUrl);
+        document.getElementById("url").value = '';
         }
 
   return (
@@ -23,16 +23,30 @@ function App() {
                 <div className="col-span-2 mt-6 ml-6">
                     <input className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                            placeholder="Shorten a link here.."
-                           name="url"
+                           id="url"
                            onChange={e => setUrl(e.target.value)}
                     />
                 </div>
                 <div className="col-span-1 mt-8 ml-6">
-                    <button className="bg-indigo-600 p-2 rounded-lg text-white font-bold w-1/2 overflow-hidden" type="submit">
+                    <button className="hover:bg-indigo-500 bg-indigo-600 p-2 rounded-lg text-white font-bold w-1/2 overflow-hidden" type="submit">
                         Shorten
                     </button>
                 </div>
             </form>
+        </div>
+        <div className="flex justify-center">
+            <div className="w-1/2 mt-4 float-right">
+                {shortUrl.map((url, key) => {
+                    return (
+                        <div className="mb-6 font-bold" key={key}>
+                            {url}
+                            <button className="hover:bg-indigo-400 bg-indigo-500 p-1 rounded-lg text-white text-sm font-bold w-20 overflow-hidden ml-8">
+                                Copy
+                            </button>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     </div>
   );
