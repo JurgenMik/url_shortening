@@ -8,8 +8,10 @@ function App() {
     const [shortUrl, setShort] = useState([]);
     const [validate, setValidate] = useState(false);
 
-    const copyUrl = (urls) => {
+    const copyUrl = (urls, key) => {
+        const id = key.key;
         navigator.clipboard.writeText(urls.urls);
+        document.getElementById(id).innerText = 'Copied';
     }
 
     const handleSubmit = (e) => {
@@ -53,7 +55,7 @@ function App() {
                                 {urls}
                             </p>
                             <button onClick={(event) =>
-                                copyUrl({urls})} className="hover:bg-indigo-400 bg-indigo-500 p-1 rounded-lg text-white text-sm font-bold w-20 overflow-hidden ml-8">
+                                copyUrl({urls}, {key})} id={key} className="hover:bg-indigo-400 bg-indigo-500 p-1 rounded-lg text-white text-sm font-bold w-20 overflow-hidden ml-8">
                                 Copy
                             </button>
                         </div>
