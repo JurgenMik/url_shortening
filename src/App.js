@@ -7,6 +7,10 @@ function App() {
     const [url, setUrl] = useState('');
     const [shortUrl, setShort] = useState([]);
 
+    const copyUrl = (urls) => {
+        navigator.clipboard.writeText(urls.urls);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.get(`https://api.shrtco.de/v2/shorten?url=${url}`)
@@ -36,11 +40,13 @@ function App() {
         </div>
         <div className="flex justify-center">
             <div className="w-1/2 mt-4 float-right">
-                {shortUrl.map((url, key) => {
+                {shortUrl.map((urls, key) => {
                     return (
                         <div className="mb-6 font-bold" key={key}>
-                            {url}
-                            <button className="hover:bg-indigo-400 bg-indigo-500 p-1 rounded-lg text-white text-sm font-bold w-20 overflow-hidden ml-8">
+                            <p className="inline-block" id="copyUrl">
+                                {urls}
+                            </p>
+                            <button onClick={(event) => copyUrl({urls})} className="hover:bg-indigo-400 bg-indigo-500 p-1 rounded-lg text-white text-sm font-bold w-20 overflow-hidden ml-8">
                                 Copy
                             </button>
                         </div>
