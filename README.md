@@ -1,4 +1,4 @@
-##URL Shortener
+URL Shortener -
 Integrating [shrtcode](https://shrtco.de/) url shortening API
 ## Table of Contents
 * <strong>Overview</strong>
